@@ -1,11 +1,8 @@
 {
   "version": 2,
   "public": true,
-  "buildCommand": "npm install",
-  "outputDirectory": ".",
   "functions": {
     "api/**/*.js": {
-      "runtime": "nodejs18.x",
       "memory": 1024,
       "maxDuration": 10
     }
