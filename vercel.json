@@ -1,43 +1,17 @@
 {
   "version": 2,
   "public": true,
+  "cleanUrls": false,
   "functions": {
     "api/**/*.js": {
       "memory": 1024,
       "maxDuration": 10
     }
   },
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/images/(.*)",
-      "dest": "/images/$1"
-    },
-    {
-      "src": "/(.*)\\.(html|css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot)$",
-      "dest": "/$1.$2",
-      "headers": {
-        "cache-control": "public, max-age=3600"
-      }
-    },
-    {
-      "src": "/step%20(\\d+)/code\\.html",
-      "dest": "/step $1/code.html"
-    },
-    {
-      "src": "/thank%20you%20page/code\\.html",
-      "dest": "/thank you page/code.html"
-    },
-    {
-      "src": "/welcome%20page/code\\.html",
-      "dest": "/welcome page/code.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
     }
   ],
   "headers": [
@@ -50,16 +24,15 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' http://localhost:* https:"
-        }
-      ]
-    },
-    {
-      "source": "/api/:path*",
-      "headers": [
+          "value": "default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:"
+        },
         {
-          "key": "Cache-Control",
-          "value": "no-cache, no-store, must-revalidate"
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
         }
       ]
     }

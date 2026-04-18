@@ -59,7 +59,7 @@ async function submitFeedback() {
 
       collectFormData();
 
-      const response = await fetch("/api/submit-feedback", {
+      const response = await fetch("/.netlify/functions/submit-feedback", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
