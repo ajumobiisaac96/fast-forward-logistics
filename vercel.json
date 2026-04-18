@@ -1,40 +1,43 @@
 {
+  "version": 2,
+  "public": true,
   "buildCommand": "npm install",
   "outputDirectory": ".",
-  "public": true,
   "functions": {
     "api/**/*.js": {
+      "runtime": "nodejs18.x",
       "memory": 1024,
       "maxDuration": 10
     }
   },
-  "env": [
-    "EMAIL_USER",
-    "EMAIL_PASSWORD"
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
   ],
   "headers": [
     {
       "source": "/api/:path*",
       "headers": [
         {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        },
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, PUT, DELETE, OPTIONS"
-        },
-        {
-          "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type"
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
         }
       ]
-    }
-  ],
-  "rewrites": [
+    },
     {
       "source": "/(.*)",
-      "destination": "/$1"
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
     }
   ]
 }
