@@ -1,0 +1,337 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="icon" type="image/png" href="../images/logo.png"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface": "#191c1d",
+              "tertiary-fixed": "#bde9ff",
+              "on-tertiary": "#ffffff",
+              "error-container": "#ffdad6",
+              "on-secondary-container": "#636262",
+              "tertiary-fixed-dim": "#77d2f8",
+              "surface-container-highest": "#e1e3e4",
+              "tertiary-container": "#007fa2",
+              "on-secondary": "#ffffff",
+              "surface-container-high": "#e7e8e9",
+              "on-primary": "#ffffff",
+              "on-secondary-fixed": "#1c1b1b",
+              "on-tertiary-container": "#fdfdff",
+              "inverse-on-surface": "#f0f1f2",
+              "secondary-fixed-dim": "#c8c6c5",
+              "surface-bright": "#f8f9fa",
+              "primary-fixed": "#ffdad7",
+              secondary: "#5f5e5e",
+              "on-primary-fixed": "#410005",
+              "on-tertiary-fixed-variant": "#004d64",
+              background: "#f8f9fa",
+              "surface-tint": "#f0163a",
+              "surface-dim": "#d9dadb",
+              "inverse-primary": "#ffb3ae",
+              "secondary-fixed": "#e5e2e1",
+              "on-error": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              surface: "#f8f9fa",
+              "on-surface-variant": "#5d3f3d",
+              "outline-variant": "#e7bcb9",
+              "on-error-container": "#93000a",
+              "on-tertiary-fixed": "#001f2a",
+              "on-primary-fixed-variant": "#930016",
+              "on-background": "#191c1d",
+              "inverse-surface": "#2e3132",
+              "surface-variant": "#e1e3e4",
+              tertiary: "#006581",
+              "primary-fixed-dim": "#ffb3ae",
+              "primary-container": "#f0163a",
+              "on-primary-container": "#fffcff",
+              "surface-container": "#edeeef",
+              "on-secondary-fixed-variant": "#474746",
+              error: "#ba1a1a",
+              primary: "#f0163a",
+              outline: "#926e6c",
+              "surface-container-low": "#f3f4f5",
+              "secondary-container": "#e2dfde",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            fontFamily: {
+              headline: ["Manrope"],
+              body: ["Inter"],
+              label: ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 300,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Manrope", sans-serif;
+      }
+    </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-surface text-on-background min-h-screen flex flex-col overflow-x-hidden"
+  >
+    <!-- TopAppBar -->
+    <header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md">
+      <div
+        class="flex items-center justify-between px-6 py-4 w-full max-w-screen-xl mx-auto"
+      >
+        <div class="flex items-center">
+          <a href="code.html" class="flex items-center">
+            <img
+              alt="Fast-Forward Logo"
+              class="h-12 w-auto object-contain"
+              src="../images/logo.png"
+            />
+          </a>
+        </div>
+        <div class="flex items-center gap-6">
+          <button
+            class="text-neutral-500 hover:bg-neutral-100 p-2 rounded-full transition-colors active:scale-95 duration-150"
+          >
+            <span class="material-symbols-outlined" data-icon="help_outline"
+              >help_outline</span
+            >
+          </button>
+        </div>
+      </div>
+      <!-- Separation Line -->
+      <div class="bg-neutral-200/50 h-[1px] w-full"></div>
+    </header>
+    <main class="flex-grow flex items-center justify-center pt-24 pb-32 px-6">
+      <div
+        class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
+      >
+        <!-- Content Section -->
+        <div class="lg:col-span-7 flex flex-col items-start text-left">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 bg-surface-container-low rounded-full mb-8"
+          >
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            <span
+              class="font-label text-xs font-bold uppercase tracking-widest text-secondary"
+              >Merchant Experience 2024</span
+            >
+          </div>
+          <h1
+            class="text-5xl lg:text-7xl font-extrabold text-on-background tracking-tight mb-6 leading-[1.1]"
+          >
+            Help us <span class="text-primary italic">serve you better</span> in
+            less than 2 minutes.
+          </h1>
+          <p
+            class="text-body-lg text-secondary max-w-xl mb-10 leading-relaxed text-lg"
+          >
+            Your partnership fuels our speed. Share your feedback on our
+            logistics performance to help us refine our merchant ecosystem and
+            delivery precision.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <a
+              href="../step 1/code.html"
+              class="bg-gradient-to-r from-[#f0163a] to-[#ff3b5c] text-on-primary px-10 py-5 rounded-xl font-bold text-lg shadow-[0px_12px_32px_rgba(240,22,58,0.15)] hover:opacity-95 active:translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-3 group inline-flex"
+            >
+              Start Survey
+              <span
+                class="material-symbols-outlined group-hover:translate-x-1 transition-transform"
+                data-icon="arrow_forward"
+                >arrow_forward</span
+              >
+            </a>
+            <button
+              class="bg-surface-container-highest text-primary px-10 py-5 rounded-xl font-bold text-lg hover:bg-surface-container-high transition-colors flex items-center justify-center"
+            >
+              View Past Feedback
+            </button>
+          </div>
+          <div class="mt-16 grid grid-cols-3 gap-8">
+            <div class="flex flex-col gap-1">
+              <span class="text-2xl font-bold text-on-background">98%</span>
+              <span
+                class="text-xs font-label uppercase text-secondary tracking-tighter"
+                >Merchant Satisfaction</span
+              >
+            </div>
+            <div class="flex flex-col gap-1">
+              <span class="text-2xl font-bold text-on-background">1.2M</span>
+              <span
+                class="text-xs font-label uppercase text-secondary tracking-tighter"
+                >Deliveries Monthly</span
+              >
+            </div>
+            <div class="flex flex-col gap-1">
+              <span class="text-2xl font-bold text-on-background">&lt; 2m</span>
+              <span
+                class="text-xs font-label uppercase text-secondary tracking-tighter"
+                >Completion Time</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Visual Section (Bento Inspired Asymmetry) -->
+        <div class="lg:col-span-5 relative">
+          <div class="grid grid-cols-2 gap-4">
+            <!-- Glass Card 1 -->
+            <div
+              class="col-span-2 bg-surface-container-lowest p-6 rounded-3xl shadow-[0px_12px_32px_rgba(25,28,29,0.04)] border border-outline-variant/10"
+            >
+              <div class="flex items-center justify-between mb-8">
+                <div class="flex flex-col">
+                  <span
+                    class="text-xs font-bold text-secondary uppercase tracking-widest"
+                    >Active Fleet</span
+                  >
+                  <span class="text-2xl font-black text-on-background"
+                    >Kinetic Network</span
+                  >
+                </div>
+                <div
+                  class="w-12 h-12 rounded-2xl bg-primary-container/10 flex items-center justify-center"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary"
+                    data-icon="local_shipping"
+                    >local_shipping</span
+                  >
+                </div>
+              </div>
+              <div class="h-48 w-full rounded-2xl overflow-hidden relative">
+                <img
+                  alt="background texture"
+                  class="w-full h-full object-cover grayscale contrast-125 opacity-20"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuABA9pKzzC8i6hjrYCmDNvM0C_Ifccu8HJLmP9SpNcmlnnIfMhS-zo-7BuQyZ8HCHkvnIj9yV_YKBJMK0BOqYq2YVW-6Mx6SWvrq4xHdzC9MWecZ0dOh0baMUWd7cyUBVuUtshsbgvJO-4ej1NtJj5F3lheOJNq3hdeflv_c7bMgdpjJHRFSMoVp1CURtRmdCpW1MAUjxwBb2r7mp-p5SyzqxKX-EGnYClKue_4WfrFA_dz9nV8_yMPE0VIimOziELCy6znj7fb8Lw"
+                />
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-full px-6">
+                    <div
+                      class="h-2 w-full bg-secondary-container rounded-full overflow-hidden"
+                    >
+                      <div class="h-full w-[75%] bg-primary rounded-full"></div>
+                    </div>
+                    <div class="flex justify-between mt-3">
+                      <span
+                        class="text-[10px] font-bold uppercase text-secondary"
+                        >Route Efficiency</span
+                      >
+                      <span class="text-[10px] font-bold uppercase text-primary"
+                        >High Precision</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Small Stats Card -->
+            <div
+              class="bg-surface-container-low p-6 rounded-3xl flex flex-col justify-between aspect-square"
+            >
+              <div
+                class="w-10 h-10 rounded-xl bg-white flex items-center justify-center"
+              >
+                <span
+                  class="material-symbols-outlined text-primary"
+                  data-icon="verified_user"
+                  >verified_user</span
+                >
+              </div>
+              <span
+                class="text-body-sm font-semibold text-on-background leading-tight"
+                >Secured Global Logistics Standards</span
+              >
+            </div>
+            <!-- Small Visual Card -->
+            <div class="rounded-3xl overflow-hidden relative aspect-square">
+              <img
+                alt="Logistics in action"
+                class="w-full h-full object-cover"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuADBlLhXIpRMbpq2-tckarxpktUiFNVH21YOQX3UoDSbv7V1jUeTx468qvf-wrSRaJrkPHxn7ofF55n1EHA3TnLs8oV0b71xichEoa6BOaixzGNua5FndrbAzrDKIYtDjzBhLgmyI4FEtJ1DnUuefp345Mia5-b6rqT9UOfB6eb5AAlBSX9VoLtcuVE-FqfknYNwWqsmmGPHb2pYqS8tJGQywg6oSJEWt-zB6PpH-lN5IFbEzOQ9G35r13VBbfvpAHvBKxZOzzw-1c"
+              />
+              <div
+                class="absolute inset-0 bg-primary/20 backdrop-multiply"
+              ></div>
+              <div class="absolute bottom-4 left-4">
+                <span
+                  class="material-symbols-outlined text-white text-3xl"
+                  data-icon="speed"
+                  >speed</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Floating Accent -->
+          <div
+            class="absolute -top-6 -right-6 w-24 h-24 bg-primary-container/5 rounded-full blur-3xl"
+          ></div>
+          <div
+            class="absolute -bottom-10 -left-10 w-40 h-40 bg-on-tertiary-container/5 rounded-full blur-3xl"
+          ></div>
+        </div>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="fixed bottom-0 w-full bg-white rounded-t-3xl border-t border-neutral-100 z-40 shadow-[0px_-12px_32px_rgba(25,28,29,0.06)]"
+    >
+      <div
+        class="flex justify-between items-center px-8 py-6 w-full max-w-screen-xl mx-auto"
+      >
+        <div class="hidden sm:flex items-center gap-2">
+          <span
+            class="text-neutral-400 font-label text-xs uppercase tracking-wider"
+            >© 2024 Fast-Forward Logistics</span
+          >
+        </div>
+        <div class="flex items-center gap-4 w-full sm:w-auto justify-end">
+          <button
+            class="px-8 py-3 text-neutral-400 font-label font-semibold uppercase tracking-wider text-sm hover:text-neutral-600 transition-colors"
+          >
+            Back
+          </button>
+          <button
+            class="bg-gradient-to-r from-[#f0163a] to-[#ff3b5c] text-white px-10 py-3 rounded-xl font-label font-semibold uppercase tracking-wider text-sm hover:opacity-90 transition-all active:translate-y-0.5 shadow-lg shadow-primary/20"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

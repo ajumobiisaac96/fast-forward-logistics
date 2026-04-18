@@ -1,0 +1,405 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="icon" type="image/png" href="../images/logo.png"/>
+    <title>Fast-Forward | Merchant Feedback Step 4</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed": "#ffdad7",
+              "on-error-container": "#93000a",
+              "primary-container": "#e6192e",
+              "surface-variant": "#e1e3e4",
+              "surface-container-highest": "#e1e3e4",
+              "surface-tint": "#c00020",
+              "surface-container": "#edeeef",
+              "on-secondary-fixed": "#1c1b1b",
+              "on-surface": "#191c1d",
+              "on-primary": "#ffffff",
+              "secondary-fixed": "#e5e2e1",
+              "on-tertiary-fixed": "#001f2a",
+              "tertiary-fixed-dim": "#77d2f8",
+              "tertiary-container": "#007fa2",
+              "surface-dim": "#d9dadb",
+              tertiary: "#006581",
+              "on-primary-fixed": "#410005",
+              "on-secondary-fixed-variant": "#474746",
+              "on-primary-fixed-variant": "#930016",
+              secondary: "#5f5e5e",
+              "surface-container-low": "#f3f4f5",
+              "on-background": "#191c1d",
+              "surface-container-high": "#e7e8e9",
+              error: "#ba1a1a",
+              "error-container": "#ffdad6",
+              "inverse-surface": "#2e3132",
+              primary: "#bc001f",
+              "secondary-fixed-dim": "#c8c6c5",
+              "inverse-primary": "#ffb3ae",
+              "surface-container-lowest": "#ffffff",
+              outline: "#926e6c",
+              "on-secondary": "#ffffff",
+              "inverse-on-surface": "#f0f1f2",
+              "on-error": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-primary-container": "#fffcff",
+              "tertiary-fixed": "#bde9ff",
+              "on-secondary-container": "#636262",
+              surface: "#f8f9fa",
+              "surface-bright": "#f8f9fa",
+              "on-tertiary-container": "#fdfdff",
+              background: "#f8f9fa",
+              "on-tertiary-fixed-variant": "#004d64",
+              "on-surface-variant": "#5d3f3d",
+              "primary-fixed-dim": "#ffb3ae",
+              "secondary-container": "#e2dfde",
+              "outline-variant": "#e7bcb9",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            fontFamily: {
+              headline: ["Manrope"],
+              body: ["Inter"],
+              label: ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .bg-kinetic-gradient {
+        background: linear-gradient(45deg, #bc001f 0%, #e6192e 100%);
+      }
+      .ghost-border {
+        outline: 2px solid rgba(188, 0, 31, 0.15);
+      }
+    </style>
+    <script src="../forms.js"></script>
+  </head>
+  <body
+    class="bg-background font-body text-on-background min-h-screen flex flex-col overflow-x-hidden"
+  >
+    <header
+      class="bg-neutral-50/80 dark:bg-neutral-900/80 backdrop-blur-lg sticky top-0 z-50"
+    >
+      <div
+        class="flex justify-between items-center px-6 py-4 w-full max-w-7xl mx-auto"
+      >
+        <div
+          class="font-headline text-2xl font-black italic text-red-700 dark:text-red-600 tracking-tighter"
+        >
+          <a href="../index.html" class="flex items-center">
+            <img
+              alt="Fast-Forward Logo"
+              class="h-28 w-auto object-contain"
+              src="../images/logo.png"
+            />
+          </a>
+        </div>
+        <div class="flex items-center gap-4">
+          <button
+            class="material-symbols-outlined p-2 rounded-full hover:bg-neutral-200/50 transition-colors text-neutral-600"
+            data-icon="help"
+          >
+            help
+          </button>
+          <button
+            class="material-symbols-outlined p-2 rounded-full hover:bg-neutral-200/50 transition-colors text-neutral-600"
+            data-icon="account_circle"
+          >
+            account_circle
+          </button>
+        </div>
+      </div>
+    </header>
+    <main class="flex-grow flex items-center justify-center px-6 py-12 pb-32">
+      <div class="w-full max-w-2xl">
+        <div class="mb-8 space-y-4">
+          <div class="flex justify-between items-end">
+            <div>
+              <span
+                class="font-label text-xs font-bold uppercase tracking-widest text-primary mb-1 block"
+                >Final Step</span
+              >
+              <h1 class="font-headline text-3xl font-extrabold tracking-tight">
+                Improvements &amp; Satisfaction
+              </h1>
+            </div>
+            <span class="font-label text-sm font-semibold text-secondary"
+              >Step 4 of 4</span
+            >
+          </div>
+          <div
+            class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden"
+          >
+            <div class="h-full w-full bg-kinetic-gradient rounded-full"></div>
+          </div>
+        </div>
+        <div class="space-y-6">
+          <section
+            class="bg-surface-container-lowest p-8 rounded-xl shadow-[0px_12px_32px_rgba(25,28,29,0.04)] space-y-8"
+          >
+            <div class="space-y-4">
+              <label
+                class="font-label text-sm font-semibold text-secondary uppercase tracking-wider block"
+                >Overall Satisfaction</label
+              >
+              <div
+                class="flex flex-wrap justify-center items-center gap-2 sm:gap-3 md:gap-4 md:justify-between max-w-2xl mx-auto"
+              >
+                <label
+                  class="group flex flex-col items-center gap-2 cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="overallSatisfaction"
+                    value="Awful"
+                    class="peer sr-only"
+                  />
+                  <button
+                    type="button"
+                    class="flex flex-col items-center gap-2 p-3 hover:bg-surface-container-low rounded-xl transition-all active:scale-95 peer-checked:bg-primary pointer-events-none"
+                  >
+                    <span
+                      class="material-symbols-outlined text-4xl text-neutral-400 group-hover:text-primary transition-colors peer-checked:text-primary"
+                      data-icon="sentiment_very_dissatisfied"
+                      >sentiment_very_dissatisfied</span
+                    >
+                    <span class="text-xs font-medium text-secondary"
+                      >Awful</span
+                    >
+                  </button>
+                </label>
+                <label
+                  class="group flex flex-col items-center gap-2 cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="overallSatisfaction"
+                    value="Bad"
+                    class="peer sr-only"
+                  />
+                  <button
+                    type="button"
+                    class="flex flex-col items-center gap-2 p-3 hover:bg-surface-container-low rounded-xl transition-all active:scale-95 peer-checked:bg-primary pointer-events-none"
+                  >
+                    <span
+                      class="material-symbols-outlined text-4xl text-neutral-400 group-hover:text-primary transition-colors peer-checked:text-primary"
+                      data-icon="sentiment_dissatisfied"
+                      >sentiment_dissatisfied</span
+                    >
+                    <span class="text-xs font-medium text-secondary">Bad</span>
+                  </button>
+                </label>
+                <label
+                  class="group flex flex-col items-center gap-2 cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="overallSatisfaction"
+                    value="Okay"
+                    class="peer sr-only"
+                  />
+                  <button
+                    type="button"
+                    class="flex flex-col items-center gap-2 p-3 hover:bg-surface-container-low rounded-xl transition-all active:scale-95 peer-checked:bg-primary pointer-events-none"
+                  >
+                    <span
+                      class="material-symbols-outlined text-4xl text-neutral-400 group-hover:text-primary transition-colors peer-checked:text-primary"
+                      data-icon="sentiment_neutral"
+                      >sentiment_neutral</span
+                    >
+                    <span class="text-xs font-medium text-secondary">Okay</span>
+                  </button>
+                </label>
+                <label
+                  class="group flex flex-col items-center gap-2 cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="overallSatisfaction"
+                    value="Good"
+                    class="peer sr-only"
+                  />
+                  <button
+                    type="button"
+                    class="flex flex-col items-center gap-2 p-3 hover:bg-surface-container-low rounded-xl transition-all active:scale-95 peer-checked:bg-primary pointer-events-none"
+                  >
+                    <span
+                      class="material-symbols-outlined text-4xl text-neutral-400 group-hover:text-primary transition-colors peer-checked:text-primary"
+                      data-icon="sentiment_satisfied"
+                      >sentiment_satisfied</span
+                    >
+                    <span class="text-xs font-medium text-secondary">Good</span>
+                  </button>
+                </label>
+                <label
+                  class="group flex flex-col items-center gap-2 cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="overallSatisfaction"
+                    value="Amazing"
+                    class="peer sr-only"
+                  />
+                  <button
+                    type="button"
+                    class="flex flex-col items-center gap-2 p-4 bg-primary-fixed/30 rounded-xl transition-all active:scale-95 peer-checked:bg-primary pointer-events-none"
+                  >
+                    <span
+                      class="material-symbols-outlined text-4xl text-primary"
+                      data-icon="sentiment_very_satisfied"
+                      style="font-variation-settings: &quot;FILL&quot; 1"
+                      >sentiment_very_satisfied</span
+                    >
+                    <span class="text-xs font-bold text-primary">Amazing</span>
+                  </button>
+                </label>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 gap-6">
+              <div class="space-y-2">
+                <label
+                  class="font-label text-sm font-semibold text-secondary uppercase tracking-wider"
+                  >What could we improve?</label
+                >
+                <textarea
+                  class="w-full bg-surface-container-high border-none rounded-xl p-4 min-h-[120px] focus:ring-2 focus:ring-primary/40 placeholder:text-neutral-400 font-body text-on-surface"
+                  id="improvements"
+                  placeholder="Speed, communication, packaging quality..."
+                ></textarea>
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="font-label text-sm font-semibold text-secondary uppercase tracking-wider"
+                  >Desired Features</label
+                >
+                <textarea
+                  class="w-full bg-surface-container-high border-none rounded-xl p-4 min-h-[120px] focus:ring-2 focus:ring-primary/40 placeholder:text-neutral-400 font-body text-on-surface"
+                  id="desiredFeatures"
+                  placeholder="What tools would make your logistics easier?"
+                ></textarea>
+              </div>
+            </div>
+            <div class="pt-4 space-y-4">
+              <div class="flex items-center justify-between">
+                <label
+                  class="font-label text-sm font-semibold text-secondary uppercase tracking-wider"
+                  >Would you recommend Fast-Forward to others?</label
+                >
+                <div class="flex bg-surface-container-low p-1 rounded-xl">
+                  <label class="cursor-pointer">
+                    <input
+                      type="radio"
+                      name="recommendation"
+                      value="No"
+                      class="peer sr-only"
+                    />
+                    <button
+                      type="button"
+                      class="px-6 py-2 rounded-lg font-semibold text-sm transition-all text-secondary hover:bg-white/50 peer-checked:bg-white peer-checked:shadow-sm peer-checked:text-primary pointer-events-none"
+                    >
+                      No
+                    </button>
+                  </label>
+                  <label class="cursor-pointer">
+                    <input
+                      type="radio"
+                      name="recommendation"
+                      value="Yes"
+                      class="peer sr-only"
+                      checked
+                    />
+                    <button
+                      type="button"
+                      class="px-6 py-2 rounded-lg font-semibold text-sm transition-all text-secondary hover:bg-white/50 peer-checked:bg-white peer-checked:shadow-sm peer-checked:text-primary pointer-events-none"
+                    >
+                      Yes
+                    </button>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </section>
+          <div class="flex justify-center">
+            <p class="text-xs text-secondary/60 max-w-sm text-center">
+              Your feedback is essential for kinetic precision. We use this data
+              to prioritize our engineering roadmap for next quarter.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer
+      class="fixed bottom-0 left-0 w-full z-50 flex justify-between items-center px-8 pb-8 pt-4 bg-white/90 dark:bg-neutral-950/90 backdrop-blur-xl"
+    >
+      <a
+        href="../step 3/code.html"
+        class="flex flex-row items-center justify-center text-neutral-500 dark:text-neutral-400 px-6 py-3 gap-2 hover:opacity-90 transition-opacity active:scale-[0.98]"
+      >
+        <span
+          class="material-symbols-outlined text-sm"
+          data-icon="arrow_back_ios"
+          >arrow_back_ios</span
+        >
+        <span class="font-label text-sm font-semibold uppercase tracking-widest"
+          >Back</span
+        >
+      </a>
+      <button
+        type="button"
+        id="submitBtn"
+        onclick="submitFeedback()"
+        class="flex flex-row items-center justify-center bg-gradient-to-r from-red-700 to-red-500 text-white rounded-xl px-8 py-3 gap-2 shadow-lg hover:opacity-90 transition-opacity active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        <span class="font-label text-sm font-semibold uppercase tracking-widest"
+          >Submit</span
+        >
+        <span
+          class="material-symbols-outlined text-sm"
+          data-icon="arrow_forward_ios"
+          >arrow_forward_ios</span
+        >
+      </button>
+    </footer>
+    <div
+      class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden"
+    >
+      <div
+        class="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px]"
+      ></div>
+      <div
+        class="absolute bottom-[-10%] left-[-10%] w-[30%] h-[30%] bg-primary/5 rounded-full blur-[100px]"
+      ></div>
+    </div>
+  </body>
+</html>

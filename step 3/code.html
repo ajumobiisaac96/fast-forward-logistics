@@ -1,0 +1,391 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="icon" type="image/png" href="../images/logo.png"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed": "#ffdad7",
+              "on-error-container": "#93000a",
+              "primary-container": "#e6192e",
+              "surface-variant": "#e1e3e4",
+              "surface-container-highest": "#e1e3e4",
+              "surface-tint": "#c00020",
+              "surface-container": "#edeeef",
+              "on-secondary-fixed": "#1c1b1b",
+              "on-surface": "#191c1d",
+              "on-primary": "#ffffff",
+              "secondary-fixed": "#e5e2e1",
+              "on-tertiary-fixed": "#001f2a",
+              "tertiary-fixed-dim": "#77d2f8",
+              "tertiary-container": "#007fa2",
+              "surface-dim": "#d9dadb",
+              tertiary: "#006581",
+              "on-primary-fixed": "#410005",
+              "on-secondary-fixed-variant": "#474746",
+              "on-primary-fixed-variant": "#930016",
+              secondary: "#5f5e5e",
+              "surface-container-low": "#f3f4f5",
+              "on-background": "#191c1d",
+              "surface-container-high": "#e7e8e9",
+              error: "#ba1a1a",
+              "error-container": "#ffdad6",
+              "inverse-surface": "#2e3132",
+              primary: "#bc001f",
+              "secondary-fixed-dim": "#c8c6c5",
+              "inverse-primary": "#ffb3ae",
+              "surface-container-lowest": "#ffffff",
+              outline: "#926e6c",
+              "on-secondary": "#ffffff",
+              "inverse-on-surface": "#f0f1f2",
+              "on-error": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-primary-container": "#fffcff",
+              "tertiary-fixed": "#bde9ff",
+              "on-secondary-container": "#636262",
+              surface: "#f8f9fa",
+              "surface-bright": "#f8f9fa",
+              "on-tertiary-container": "#fdfdff",
+              background: "#f8f9fa",
+              "on-tertiary-fixed-variant": "#004d64",
+              "on-surface-variant": "#5d3f3d",
+              "primary-fixed-dim": "#ffb3ae",
+              "secondary-container": "#e2dfde",
+              "outline-variant": "#e7bcb9",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            fontFamily: {
+              headline: ["Manrope"],
+              body: ["Inter"],
+              label: ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Manrope", sans-serif;
+      }
+    </style>
+    <script src="../forms.js"></script>
+  </head>
+  <body
+    class="bg-background text-on-background min-h-screen flex flex-col overflow-x-hidden"
+  >
+    <!-- TopAppBar -->
+    <header
+      class="bg-neutral-50/80 dark:bg-neutral-900/80 backdrop-blur-lg docked full-width top-0 no-border bg-neutral-100 dark:bg-neutral-800 z-40 sticky"
+    >
+      <div
+        class="flex justify-between items-center px-6 py-4 w-full max-w-7xl mx-auto"
+      >
+        <div class="flex items-center gap-4">
+          <a href="../index.html" class="flex items-center">
+            <img
+              alt="Fast-Forward Logo"
+              class="h-28 w-auto object-contain"
+              src="../images/logo.png"
+            />
+          </a>
+        </div>
+        <div class="flex items-center gap-4">
+          <button
+            class="p-2 hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50 transition-colors active:scale-95 duration-200"
+          >
+            <span
+              class="material-symbols-outlined text-neutral-600 dark:text-neutral-400"
+              >help</span
+            >
+          </button>
+          <button
+            class="p-2 hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50 transition-colors active:scale-95 duration-200"
+          >
+            <span
+              class="material-symbols-outlined text-neutral-600 dark:text-neutral-400"
+              >account_circle</span
+            >
+          </button>
+        </div>
+      </div>
+    </header>
+    <main
+      class="flex-grow flex flex-col items-center justify-center px-6 py-12 pb-32"
+    >
+      <div class="w-full max-w-3xl">
+        <!-- Progress Section -->
+        <div class="mb-12">
+          <div class="flex justify-between items-end mb-4">
+            <div>
+              <span
+                class="text-xs font-bold tracking-widest uppercase text-secondary mb-1 block"
+                >Step 3 of 4</span
+              >
+              <h1
+                class="text-4xl font-extrabold tracking-tight text-on-background"
+              >
+                Pain Points &amp; Value
+              </h1>
+            </div>
+            <div class="text-right">
+              <span class="text-sm font-semibold text-primary"
+                >75% Complete</span
+              >
+            </div>
+          </div>
+          <!-- Momentum Tracker Progress Bar -->
+          <div
+            class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden flex"
+          >
+            <div
+              class="h-full bg-gradient-to-r from-primary to-primary-container rounded-full"
+              style="width: 75%"
+            ></div>
+          </div>
+        </div>
+        <!-- Form Container -->
+        <div class="space-y-8">
+          <!-- Operational Challenges -->
+          <section class="bg-surface-container-low p-8 rounded-3xl space-y-4">
+            <div class="flex items-start gap-4">
+              <div class="bg-primary/10 p-2 rounded-xl">
+                <span class="material-symbols-outlined text-primary"
+                  >engineering</span
+                >
+              </div>
+              <div class="flex-1">
+                <label
+                  class="block text-sm font-bold text-secondary uppercase tracking-wider mb-2"
+                  for="operationalChallenges"
+                  >Operational Challenges</label
+                >
+                <p class="text-on-surface-variant text-sm mb-4 leading-relaxed">
+                  Describe the most frequent friction points in your daily
+                  dispatch and delivery operations.
+                </p>
+                <textarea
+                  class="w-full bg-surface-container-lowest border-none rounded-xl p-4 focus:ring-2 focus:ring-primary/40 text-on-surface placeholder:text-neutral-400 transition-shadow outline-none"
+                  id="operationalChallenges"
+                  placeholder="e.g., Driver tracking delays, manual address entry..."
+                  rows="4"
+                ></textarea>
+              </div>
+            </div>
+          </section>
+          <!-- Critical Incidents -->
+          <section class="bg-surface-container-low p-8 rounded-3xl space-y-4">
+            <div class="flex items-start gap-4">
+              <div class="bg-primary/10 p-2 rounded-xl">
+                <span class="material-symbols-outlined text-primary"
+                  >report_problem</span
+                >
+              </div>
+              <div class="flex-1">
+                <label
+                  class="block text-sm font-bold text-secondary uppercase tracking-wider mb-2"
+                  for="criticalIncidents"
+                  >Critical Incidents</label
+                >
+                <p class="text-on-surface-variant text-sm mb-4 leading-relaxed">
+                  Tell us about a specific instance where delivery failure
+                  impacted your business significantly.
+                </p>
+                <textarea
+                  class="w-full bg-surface-container-lowest border-none rounded-xl p-4 focus:ring-2 focus:ring-primary/40 text-on-surface placeholder:text-neutral-400 transition-shadow outline-none"
+                  id="criticalIncidents"
+                  placeholder="Provide details about the incident and resolution..."
+                  rows="4"
+                ></textarea>
+              </div>
+            </div>
+          </section>
+          <!-- Pricing Perception (Radio Cards) -->
+          <section class="space-y-6">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary"
+                >payments</span
+              >
+              <h2 class="text-xl font-bold tracking-tight">
+                Pricing Perception
+              </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <label class="relative cursor-pointer group">
+                <input
+                  class="peer sr-only"
+                  name="pricingPerception"
+                  type="radio"
+                  value="Premium"
+                />
+                <div
+                  class="h-full p-6 rounded-2xl bg-surface-container-low border-2 border-transparent peer-checked:border-primary peer-checked:bg-white transition-all group-hover:bg-surface-container-high"
+                >
+                  <p class="font-bold text-on-surface mb-1">Premium</p>
+                  <p class="text-xs text-secondary leading-tight">
+                    High cost, but justified by performance
+                  </p>
+                </div>
+              </label>
+              <label class="relative cursor-pointer group">
+                <input
+                  checked=""
+                  class="peer sr-only"
+                  name="pricingPerception"
+                  type="radio"
+                  value="Competitive"
+                />
+                <div
+                  class="h-full p-6 rounded-2xl bg-surface-container-low border-2 border-transparent peer-checked:border-primary peer-checked:bg-white transition-all group-hover:bg-surface-container-high"
+                >
+                  <p class="font-bold text-on-surface mb-1">Competitive</p>
+                  <p class="text-xs text-secondary leading-tight">
+                    Fair market value for the service provided
+                  </p>
+                </div>
+              </label>
+              <label class="relative cursor-pointer group">
+                <input
+                  class="peer sr-only"
+                  name="pricingPerception"
+                  type="radio"
+                  value="Aggressive"
+                />
+                <div
+                  class="h-full p-6 rounded-2xl bg-surface-container-low border-2 border-transparent peer-checked:border-primary peer-checked:bg-white transition-all group-hover:bg-surface-container-high"
+                >
+                  <p class="font-bold text-on-surface mb-1">Aggressive</p>
+                  <p class="text-xs text-secondary leading-tight">
+                    Lower cost than industry standard
+                  </p>
+                </div>
+              </label>
+            </div>
+          </section>
+          <!-- Value Assessment -->
+          <section
+            class="bg-surface-container-lowest p-8 rounded-3xl shadow-[0px_12px_32px_rgba(25,28,29,0.04)] border border-outline-variant/10"
+          >
+            <div
+              class="flex flex-col md:flex-row md:items-center justify-between gap-6"
+            >
+              <div class="max-w-md">
+                <h3 class="text-lg font-bold mb-1">Value Assessment</h3>
+                <p class="text-sm text-secondary">
+                  Does the Fast-Forward platform provide measurable ROI for your
+                  logistics chain?
+                </p>
+              </div>
+              <div class="flex gap-2 flex-wrap">
+                <label class="cursor-pointer">
+                  <input
+                    type="radio"
+                    name="valueAssessment"
+                    value="Yes"
+                    class="peer sr-only"
+                  />
+                  <button
+                    type="button"
+                    class="px-6 py-3 rounded-xl bg-surface-container-high text-on-surface font-semibold hover:bg-primary hover:text-white peer-checked:bg-primary peer-checked:text-white transition-all active:scale-95 pointer-events-none"
+                  >
+                    Yes
+                  </button>
+                </label>
+                <label class="cursor-pointer">
+                  <input
+                    type="radio"
+                    name="valueAssessment"
+                    value="No"
+                    class="peer sr-only"
+                  />
+                  <button
+                    type="button"
+                    class="px-6 py-3 rounded-xl bg-surface-container-high text-on-surface font-semibold hover:bg-primary hover:text-white peer-checked:bg-primary peer-checked:text-white transition-all active:scale-95 pointer-events-none"
+                  >
+                    No
+                  </button>
+                </label>
+                <label class="cursor-pointer">
+                  <input
+                    type="radio"
+                    name="valueAssessment"
+                    value="Not sure"
+                    class="peer sr-only"
+                  />
+                  <button
+                    type="button"
+                    class="px-6 py-3 rounded-xl bg-surface-container-high text-on-surface font-semibold hover:bg-primary hover:text-white peer-checked:bg-primary peer-checked:text-white transition-all active:scale-95 pointer-events-none"
+                  >
+                    Not sure
+                  </button>
+                </label>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+    <!-- BottomNavBar -->
+    <footer
+      class="fixed bottom-0 left-0 w-full z-50 flex justify-between items-center px-8 pb-8 pt-4 bg-white/90 dark:bg-neutral-950/90 backdrop-blur-xl rounded-t-3xl shadow-[0px_-12px_32px_rgba(25,28,29,0.06)] tonal-shift-bg-neutral-50 dark:bg-neutral-900"
+    >
+      <a
+        href="../step 2/code.html"
+        class="flex flex-row items-center justify-center text-neutral-500 dark:text-neutral-400 px-6 py-3 gap-2 hover:opacity-90 transition-opacity active:scale-[0.98] font-['Inter'] text-sm font-semibold uppercase tracking-widest"
+      >
+        <span class="material-symbols-outlined">arrow_back_ios</span>
+        Back
+      </a>
+      <a
+        href="../step 4/code.html"
+        onclick="collectFormData()"
+        class="flex flex-row items-center justify-center bg-gradient-to-r from-red-700 to-red-500 text-white rounded-xl px-8 py-3 gap-2 shadow-lg hover:opacity-90 transition-opacity active:scale-[0.98] font-['Inter'] text-sm font-semibold uppercase tracking-widest"
+      >
+        Next
+        <span class="material-symbols-outlined">arrow_forward_ios</span>
+      </a>
+    </footer>
+    <!-- Decorative kinetic element (Asymmetric background accent) -->
+    <div
+      class="fixed top-20 -right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10"
+    ></div>
+    <div
+      class="fixed bottom-40 -left-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10"
+    ></div>
+  </body>
+</html>
