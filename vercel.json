@@ -9,29 +9,34 @@
   },
   "routes": [
     {
-      "src": "/images/(.*)",
-      "dest": "/images/$1",
-      "headers": {
-        "cache-control": "public, max-age=31536000, immutable"
-      }
-    },
-    {
       "src": "/api/(.*)",
       "dest": "/api/$1"
     },
     {
-      "src": "/(.*)\\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot)$",
+      "src": "/images/(.*)",
+      "dest": "/images/$1"
+    },
+    {
+      "src": "/(.*)\\.(html|css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot)$",
       "dest": "/$1.$2",
       "headers": {
-        "cache-control": "public, max-age=31536000, immutable"
+        "cache-control": "public, max-age=3600"
       }
     },
     {
-      "src": "/(.*)\\.html$",
-      "dest": "/$1.html"
+      "src": "/step%20(\\d+)/code\\.html",
+      "dest": "/step $1/code.html"
     },
     {
-      "src": "^/(?!api/)(.*)$",
+      "src": "/thank%20you%20page/code\\.html",
+      "dest": "/thank you page/code.html"
+    },
+    {
+      "src": "/welcome%20page/code\\.html",
+      "dest": "/welcome page/code.html"
+    },
+    {
+      "src": "/(.*)",
       "dest": "/$1"
     }
   ],
