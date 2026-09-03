@@ -729,7 +729,7 @@
           const result = await response.json();
           if (result.success) {
             sessionStorage.removeItem(STORAGE_KEY);
-            window.location.href = "./thank%20you%20page/code.html";
+            window.location.href = "./thank-you.html";
           } else {
             throw new Error(result.message || "Submission failed");
           }

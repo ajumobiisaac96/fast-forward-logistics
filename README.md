@@ -9,16 +9,16 @@ a WhatsApp number via CallMeBot.
 ```
 index.html                        Landing page -> links to survey.html
 survey.html                       The 5-question interactive survey (single page, no reloads)
-thank you page/code.html          Post-submit confirmation + WhatsApp contact link
+thank-you.html                    Post-submit confirmation + WhatsApp contact link
 images/logo.png                   Company logo
 netlify/functions/submit-feedback.js   Serverless function: emails the response, pings WhatsApp
 netlify.toml                      Netlify build + redirect config
 .env.example                      Template for required environment variables
 ```
 
-Everything else in this repo (`step 1`-`step 4`, `welcome page/`, `forms.js`, `api/`, `server.js`,
-`vercel.json`, `VERCEL_DEPLOYMENT.md`) is the **old 4-step / 14-field version, an earlier landing
-page draft, and alternate Vercel/Express deploy paths. They are unused by the current site** and
+Everything else in this repo (`step 1`-`step 4`, `welcome page/`, `thank you page/`, `forms.js`,
+`api/`, `server.js`, `vercel.json`, `VERCEL_DEPLOYMENT.md`) is the **old 4-step / 14-field version,
+earlier landing and thank-you drafts, and alternate Vercel/Express deploy paths. They are unused** and
 kept only so nothing already built is lost. Netlify (via `netlify/functions/submit-feedback.js`)
 is the one deployment target the live site actually talks to.
 
