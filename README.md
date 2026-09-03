@@ -16,11 +16,12 @@ netlify.toml                      Netlify build + redirect config
 .env.example                      Template for required environment variables
 ```
 
-Everything else in this repo (`step 1`-`step 4`, `welcome page/`, `thank you page/`, `forms.js`,
-`api/`, `server.js`, `vercel.json`, `VERCEL_DEPLOYMENT.md`) is the **old 4-step / 14-field version,
-earlier landing and thank-you drafts, and alternate Vercel/Express deploy paths. They are unused** and
-kept only so nothing already built is lost. Netlify (via `netlify/functions/submit-feedback.js`)
-is the one deployment target the live site actually talks to.
+That is the whole site. The three pages are plain HTML with hand-written CSS and inline SVG —
+no build step, no CSS framework, no icon font — so they render on first paint.
+
+The earlier version of this project (a 4-step / 14-field wizard, plus alternate Vercel and Express
+deployment paths) was removed once this replaced it. If you need any of it back, it is in the git
+history before commit `a33621a`.
 
 ## The 5 questions
 

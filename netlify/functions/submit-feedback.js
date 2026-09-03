@@ -56,9 +56,9 @@ async function sendWhatsAppNotification(payload) {
 
   const lines = [
     "New Fast-Forward merchant feedback:",
-    `CSAT: ${RATING_LABELS.csat[payload.csat] || payload.csat}`,
-    `Delivery speed & reliability: ${RATING_LABELS.deliveryReliability[payload.deliveryReliability] || payload.deliveryReliability}`,
-    `Communication: ${RATING_LABELS.communication[payload.communication] || payload.communication}`,
+    `CSAT: ${RATING_LABELS.csat[payload.csat]}`,
+    `Delivery speed & reliability: ${RATING_LABELS.deliveryReliability[payload.deliveryReliability]}`,
+    `Communication: ${RATING_LABELS.communication[payload.communication]}`,
     `Recommend likelihood (0-10): ${payload.nps}`,
   ];
   if (payload.improvement) lines.push(`Improvement note: ${payload.improvement}`);
@@ -100,21 +100,33 @@ exports.handler = async (event) => {
 
   const { csat, deliveryReliability, communication, nps, improvement, phoneNumber } = payload;
 
-  if (!csat || !deliveryReliability || !communication || nps === undefined || nps === null || nps === "") {
+  // Each rating must be one of the values the form actually offers. This keeps
+  // unexpected input out of the email (the subject line is a mail header, so an
+  // unvalidated value there would be a header-injection vector) and stops junk
+  // values from polluting the CSAT/NPS figures.
+  const npsValue = String(nps).trim();
+  const isValidNps = /^(10|[0-9])$/.test(npsValue);
+
+  if (
+    !RATING_LABELS.csat[csat] ||
+    !RATING_LABELS.deliveryReliability[deliveryReliability] ||
+    !RATING_LABELS.communication[communication] ||
+    !isValidNps
+  ) {
     return {
       statusCode: 400,
       headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
-      body: JSON.stringify({ success: false, message: "Missing required answers" }),
+      body: JSON.stringify({ success: false, message: "Missing or invalid answers" }),
     };
   }
 
   const emailContent = `
     <h2>New Merchant Feedback Submission</h2>
     <hr />
-    <p><strong>Overall satisfaction (CSAT):</strong> ${escapeHtml(RATING_LABELS.csat[csat] || csat)}</p>
-    <p><strong>Delivery speed &amp; reliability:</strong> ${escapeHtml(RATING_LABELS.deliveryReliability[deliveryReliability] || deliveryReliability)}</p>
-    <p><strong>Communication &amp; updates:</strong> ${escapeHtml(RATING_LABELS.communication[communication] || communication)}</p>
-    <p><strong>Likelihood to recommend (0-10 NPS):</strong> ${escapeHtml(nps)}</p>
+    <p><strong>Overall satisfaction (CSAT):</strong> ${escapeHtml(RATING_LABELS.csat[csat])}</p>
+    <p><strong>Delivery speed &amp; reliability:</strong> ${escapeHtml(RATING_LABELS.deliveryReliability[deliveryReliability])}</p>
+    <p><strong>Communication &amp; updates:</strong> ${escapeHtml(RATING_LABELS.communication[communication])}</p>
+    <p><strong>Likelihood to recommend (0-10 NPS):</strong> ${escapeHtml(npsValue)}</p>
     <p><strong>What could we improve:</strong></p>
     <p>${improvement ? escapeHtml(improvement) : "N/A"}</p>
     <p><strong>Merchant follow-up number:</strong> ${phoneNumber ? escapeHtml(phoneNumber) : "Not provided"}</p>
@@ -127,7 +139,7 @@ exports.handler = async (event) => {
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: process.env.FEEDBACK_TO_EMAIL || process.env.EMAIL_USER,
-      subject: `New Merchant Feedback - CSAT: ${RATING_LABELS.csat[csat] || csat}`,
+      subject: `New Merchant Feedback - CSAT: ${RATING_LABELS.csat[csat]}`,
       html: emailContent,
     });
   } catch (error) {
@@ -144,7 +156,7 @@ exports.handler = async (event) => {
   }
 
   try {
-    await sendWhatsAppNotification({ csat, deliveryReliability, communication, nps, improvement, phoneNumber });
+    await sendWhatsAppNotification({ csat, deliveryReliability, communication, nps: npsValue, improvement, phoneNumber });
   } catch (error) {
     console.error("WhatsApp notification failed (non-fatal):", error);
   }
