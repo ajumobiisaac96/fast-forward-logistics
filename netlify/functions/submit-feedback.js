@@ -9,132 +9,132 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-exports.handler = async (event, context) => {
-  // Handle CORS preflight
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+};
+
+const RATING_LABELS = {
+  csat: {
+    "very-satisfied": "Very satisfied",
+    satisfied: "Satisfied",
+    neutral: "Neutral",
+    dissatisfied: "Dissatisfied",
+    "very-dissatisfied": "Very dissatisfied",
+  },
+  deliveryReliability: {
+    excellent: "Excellent",
+    good: "Good",
+    average: "Average",
+    poor: "Poor",
+  },
+  communication: {
+    "very-satisfied": "Very satisfied",
+    satisfied: "Satisfied",
+    neutral: "Neutral",
+    dissatisfied: "Dissatisfied",
+    "very-dissatisfied": "Very dissatisfied",
+  },
+};
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+// Sends the WhatsApp ping via CallMeBot. Best-effort: failures here must never
+// block a successful email submission, since email is the system of record.
+async function sendWhatsAppNotification(payload) {
+  const phone = process.env.WHATSAPP_PHONE;
+  const apiKey = process.env.WHATSAPP_APIKEY;
+  if (!phone || !apiKey) return;
+
+  const lines = [
+    "New Fast-Forward merchant feedback:",
+    `CSAT: ${RATING_LABELS.csat[payload.csat] || payload.csat}`,
+    `Delivery speed & reliability: ${RATING_LABELS.deliveryReliability[payload.deliveryReliability] || payload.deliveryReliability}`,
+    `Communication: ${RATING_LABELS.communication[payload.communication] || payload.communication}`,
+    `Recommend likelihood (0-10): ${payload.nps}`,
+  ];
+  if (payload.improvement) lines.push(`Improvement note: ${payload.improvement}`);
+  if (payload.phoneNumber) lines.push(`Merchant contact: ${payload.phoneNumber}`);
+
+  const url =
+    `https://api.callmebot.com/whatsapp.php?phone=${encodeURIComponent(phone)}` +
+    `&text=${encodeURIComponent(lines.join("\n"))}&apikey=${encodeURIComponent(apiKey)}`;
+
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`CallMeBot responded with ${response.status}`);
+  }
+}
+
+exports.handler = async (event) => {
   if (event.httpMethod === "OPTIONS") {
-    return {
-      statusCode: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type",
-      },
-      body: "OK",
-    };
+    return { statusCode: 200, headers: CORS_HEADERS, body: "OK" };
   }
 
-  // Only allow POST requests
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
+      headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
       body: JSON.stringify({ error: "Method not allowed" }),
     };
   }
 
+  let payload;
   try {
-    const {
-      businessName,
-      contactPerson,
-      phoneNumber,
-      businessType,
-      deliverySpeed,
-      reliability,
-      operationalChallenges,
-      criticalIncidents,
-      pricingPerception,
-      valueAssessment,
-      overallSatisfaction,
-      improvements,
-      desiredFeatures,
-      recommendation,
-    } = JSON.parse(event.body);
+    payload = JSON.parse(event.body);
+  } catch {
+    return {
+      statusCode: 400,
+      headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+      body: JSON.stringify({ success: false, message: "Invalid request body" }),
+    };
+  }
 
-    // Validate required fields
-    if (!businessName || !contactPerson || !phoneNumber) {
-      return {
-        statusCode: 400,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          success: false,
-          message: "Missing required fields",
-        }),
-      };
-    }
+  const { csat, deliveryReliability, communication, nps, improvement, phoneNumber } = payload;
 
-    // Create email content
-    const emailContent = `
-      <h2>New Merchant Feedback Submission</h2>
-      <hr />
-      
-      <h3>Business Information</h3>
-      <p><strong>Business Name:</strong> ${businessName || "N/A"}</p>
-      <p><strong>Contact Person:</strong> ${contactPerson || "N/A"}</p>
-      <p><strong>Phone Number:</strong> ${phoneNumber || "N/A"}</p>
-      <p><strong>Business Type:</strong> ${businessType || "N/A"}</p>
-      
-      <h3>Service Experience</h3>
-      <p><strong>Delivery Speed Rating:</strong> ${deliverySpeed || "N/A"}</p>
-      <p><strong>Reliability & Handling Rating:</strong> ${reliability || "N/A"}</p>
-      
-      <h3>Pain Points & Value</h3>
-      <p><strong>Operational Challenges:</strong></p>
-      <p>${operationalChallenges || "N/A"}</p>
-      
-      <p><strong>Critical Incidents:</strong></p>
-      <p>${criticalIncidents || "N/A"}</p>
-      
-      <p><strong>Pricing Perception:</strong> ${pricingPerception || "N/A"}</p>
-      <p><strong>Value Assessment (Measurable ROI):</strong> ${valueAssessment || "N/A"}</p>
-      
-      <h3>Improvements & Satisfaction</h3>
-      <p><strong>Overall Satisfaction:</strong> ${overallSatisfaction || "N/A"}</p>
-      <p><strong>Areas for Improvement:</strong></p>
-      <p>${improvements || "N/A"}</p>
-      
-      <p><strong>Desired Features:</strong></p>
-      <p>${desiredFeatures || "N/A"}</p>
-      
-      <p><strong>Would Recommend:</strong> ${recommendation || "N/A"}</p>
-      
-      <hr />
-      <p><em>Submitted via Fast-Forward Feedback System</em></p>
-      <p><em>Timestamp: ${new Date().toLocaleString()}</em></p>
-    `;
+  if (!csat || !deliveryReliability || !communication || nps === undefined || nps === null || nps === "") {
+    return {
+      statusCode: 400,
+      headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+      body: JSON.stringify({ success: false, message: "Missing required answers" }),
+    };
+  }
 
-    // Send email
+  const emailContent = `
+    <h2>New Merchant Feedback Submission</h2>
+    <hr />
+    <p><strong>Overall satisfaction (CSAT):</strong> ${escapeHtml(RATING_LABELS.csat[csat] || csat)}</p>
+    <p><strong>Delivery speed &amp; reliability:</strong> ${escapeHtml(RATING_LABELS.deliveryReliability[deliveryReliability] || deliveryReliability)}</p>
+    <p><strong>Communication &amp; updates:</strong> ${escapeHtml(RATING_LABELS.communication[communication] || communication)}</p>
+    <p><strong>Likelihood to recommend (0-10 NPS):</strong> ${escapeHtml(nps)}</p>
+    <p><strong>What could we improve:</strong></p>
+    <p>${improvement ? escapeHtml(improvement) : "N/A"}</p>
+    <p><strong>Merchant follow-up number:</strong> ${phoneNumber ? escapeHtml(phoneNumber) : "Not provided"}</p>
+    <hr />
+    <p><em>Submitted via Fast-Forward Feedback Survey</em></p>
+    <p><em>Timestamp: ${new Date().toLocaleString()}</em></p>
+  `;
+
+  try {
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
-      subject: `New Merchant Feedback - ${businessName || "Anonymous"}`,
+      to: process.env.FEEDBACK_TO_EMAIL || process.env.EMAIL_USER,
+      subject: `New Merchant Feedback - CSAT: ${RATING_LABELS.csat[csat] || csat}`,
       html: emailContent,
     });
-
-    return {
-      statusCode: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        success: true,
-        message: "Feedback submitted successfully! Thank you for your response.",
-      }),
-    };
   } catch (error) {
     console.error("Error sending email:", error);
     return {
       statusCode: 500,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
+      headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
       body: JSON.stringify({
         success: false,
         message: "Error submitting feedback. Please try again later.",
@@ -142,4 +142,19 @@ exports.handler = async (event, context) => {
       }),
     };
   }
+
+  try {
+    await sendWhatsAppNotification({ csat, deliveryReliability, communication, nps, improvement, phoneNumber });
+  } catch (error) {
+    console.error("WhatsApp notification failed (non-fatal):", error);
+  }
+
+  return {
+    statusCode: 200,
+    headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      success: true,
+      message: "Feedback submitted successfully! Thank you for your response.",
+    }),
+  };
 };
